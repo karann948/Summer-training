@@ -1,0 +1,38 @@
+contacts = []
+
+def add_contact(name, phone, email):
+
+    contact = {
+        'name': name,
+        'phone': phone,
+        'email': email
+    }
+    contacts.append(contact)
+    print(f"Contact added: {name}")
+
+def view_contacts():
+    """Displays all contacts in the contact book."""
+    if not contacts:
+        print("No contacts in the book yet.")
+        return
+    print("\n--- Your Contacts ---")
+    for i, contact in enumerate(contacts, 1):
+        print(f"{i}. Name: {contact['name']}, Phone: {contact['phone']}, Email: {contact['email']}")
+    print("---------------------")
+
+def search_contact(search_term):
+
+    results = []
+    for contact in contacts:
+        if search_term.lower() in contact['name'].lower() or \
+           search_term in contact['phone']:
+            results.append(contact)
+    
+    if not results:
+        print(f"No contacts found matching '{search_term}'.")
+        return
+    
+    print(f"\n--- Search Results for '{search_term}' ---")
+    for i, contact in enumerate(results, 1):
+        print(f"{i}. Name: {contact['name']}, Phone: {contact['phone']}, Email: {contact['email']}")
+    print("-----------------------------------------")
