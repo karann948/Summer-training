@@ -1,0 +1,40 @@
+import re 
+from collections import Counter 
+
+def simple_word_analyzer(text):
+   
+    text_lowercase = text.lower()
+
+    words = re.findall(r'\b[a-z]+\b', text_lowercase)
+
+    total_words = len(words)
+
+   
+    longest_word = "" 
+    if words: 
+        for word in words: 
+            if len(word) > len(longest_word): 
+                longest_word = word 
+
+
+    vowels = 'aeiou' 
+    vowel_count = 0 
+    for char in text_lowercase:
+        if char in vowels: 
+            vowel_count += 1
+
+   
+    word_frequencies = Counter(words)
+
+   
+    print(f"Total words: {total_words}")
+    print(f"Longest word: '{longest_word}' (length: {len(longest_word)})")
+    print(f"Total vowels: {vowel_count}")
+    print("\nWord Frequencies:")
+    for word, count in word_frequencies.most_common(): 
+        print(f"  '{word}': {count}")
+
+
+print("\n--- Running Simple Word Analyzer Example ---")
+my_paragraph = "This is a very simple paragraph. It has many words, and some are repeated. Simple is good!"
+simple_word_analyzer(my_paragraph)
